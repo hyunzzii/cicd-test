@@ -2,4 +2,4 @@ spring:
   application:
     name: cicd-test
 
-dessert: ${cake}
+dessert: ${cake:strawberry_cake}
