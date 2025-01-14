@@ -40,3 +40,10 @@ jobs:
           port: 22
           script: |
             whoami
+            cd /home/ubuntu/workspace/cicd-test
+            git pull
+            touch .env
+            echo "${{ secrets.CAKE }}" > .env
+            ./gradlew build
+            cd build/libs
+            nohub java -jar *SNAPSHOT.jar
