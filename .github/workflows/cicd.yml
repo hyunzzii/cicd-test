@@ -107,12 +107,12 @@ jobs:
             echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             docker-compose down -v
             if grep -q "^CAKE=" .env; then
-            sed -i '' 's/^CAKE=.*/CAKE=${{ secrets.cake }}/' .env
+            sed -i 's/^CAKE=.*/CAKE=${{ secrets.cake }}/' .env
             else
             echo "CAKE=${{ secrets.cake }}" >> .env
             fi
             if grep -q "^DOCKERHUB_USERNAME=" .env; then
-            sed -i '' 's/^DOCKERHUB_USERNAME=.*/DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}/' .env
+            sed -i 's/^DOCKERHUB_USERNAME=.*/DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}/' .env
             else
             echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> .env
             fi
