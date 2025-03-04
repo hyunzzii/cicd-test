@@ -111,4 +111,9 @@ jobs:
             else
             echo "CAKE=${{ secrets.cake }}" >> .env
             fi
+            if grep -q "^DOCKERHUB_USERNAME=" .env; then
+            sed -i '' 's/^DOCKERHUB_USERNAME=.*/DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}/' .env
+            else
+            echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> .env
+            fi
             docker-compose up -d
